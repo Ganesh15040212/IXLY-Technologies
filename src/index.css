@@ -1,0 +1,62 @@
+/* Global reset and base styles for the main site */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins Regular', sans-serif;
+  background: #0A0A0A;
+}
+
+/* Import Poppins font faces */
+@font-face {
+  font-family: 'Poppins Black';
+  src: url('/assets/css/fonts/Poppins-Black.ttf') format('truetype');
+  font-weight: 900;
+}
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url('/assets/css/fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Poppins ExtraBold';
+  src: url('/assets/css/fonts/Poppins-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Poppins ExtraLight';
+  src: url('/assets/css/fonts/Poppins-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'Poppins Light';
+  src: url('/assets/css/fonts/Poppins-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Poppins Medium';
+  src: url('/assets/css/fonts/Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Poppins Regular';
+  src: url('/assets/css/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Poppins SemiBold';
+  src: url('/assets/css/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Poppins Thin';
+  src: url('/assets/css/fonts/Poppins-Thin.ttf') format('truetype');
+  font-weight: 100;
+}
