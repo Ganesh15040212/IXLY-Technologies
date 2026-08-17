@@ -836,31 +836,6 @@ footer ul.list-inline {
     padding-left: 53px;
 }
 
-.blog {
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.blog span {
-    font-family: 'Poppins Regular';
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 16.5px;
-    color: rgba(128, 128, 128, 1);
-    flex: 1;
-    min-width: 0;
-}
-
-.blog img {
-    width: 70px;
-    height: 70px;
-    flex-shrink: 0;
-    object-fit: cover;
-}
-
 footer hr {
     margin-top: 0 !important;
     border: 1px solid rgb(42 39 39) !important;
@@ -1750,11 +1725,6 @@ section.container.contact_details {
 }
 
 @media only screen and (max-width: 1199px) {
-    .blog img {
-        width: 50px;
-        height: 50px;
-    }
-
     footer ul.list-inline {
         padding-left: 39px;
     }
@@ -1869,11 +1839,6 @@ section.container.contact_details {
 
     footer ul.list-inline {
         padding-left: 25px;
-    }
-
-    .blog img {
-        width: 35px;
-        height: 35px;
     }
 
     .carousel-item-next img,
@@ -2096,18 +2061,13 @@ section.container.contact_details {
         text-align: center !important;
     }
 
-    .footer_menu.row.col-md-12 .col-md-2.d-flex.flex-column.align-items-center.text-center,
+    .footer_menu.row.col-md-12 .col-md-3.d-flex.flex-column.align-items-center.text-center,
     .about_company.portfolio.container .col-md-6.zin {
         align-items: start !important;
     }
 
-    .footer_menu.row.col-md-12 .col-md-2.d-flex.flex-column.align-items-center.text-center .list-inline {
+    .footer_menu.row.col-md-12 .col-md-3.d-flex.flex-column.align-items-center.text-center .list-inline {
         padding-left: 0;
-    }
-
-    .blog img {
-        width: 32px;
-        height: 32px;
     }
 
     .carousel-caption.d-md-block h3 {

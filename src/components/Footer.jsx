@@ -1,20 +1,17 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { services } from '../data/services'
 
 export default function Footer() {
-  const location = useLocation()
-  const isHome = location.pathname === '/'
-
   return (
     <>
       <footer>
         <div className="container">
           <div className="footer_menu row col-md-12">
-            <div className="col-md-3">
+            <div className="col-md-4">
               <img src="/assets/img/logo-dark1.png" alt="Ixly Technologies" loading="lazy" />
               <p>Ixly Technologies is in the forefront of providing innovative business solutions by adapting upcoming technologies and trends to leverage their competency which translates in to cutting edge digital offerings that are result oriented, budget friendly and profitable ventures for customers.</p>
             </div>
-            <div className="col-md-2 d-flex flex-column align-items-center text-center">
+            <div className="col-md-3 d-flex flex-column align-items-center text-center">
               <h6>Services</h6>
               <ul className="list-inline">
                 {services.map((service) => (
@@ -22,35 +19,7 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-            <div className="col-md-4">
-              <h6>Blog</h6>
-              {isHome ? (
-                <>
-                  <div className="blog">
-                    <img src="/assets/img/asp-net-3.webp" alt="blog" loading="lazy" />
-                    <span>🌟 Hiring a .NET developer from IXLY Technologies in Coimbatore could be a strategic move to elevate your .NET applic.... </span>
-                  </div>
-                  <hr />
-                  <div className="blog">
-                    <img src="/assets/img/magento-banner.png" alt="blog" loading="lazy" />
-                    <span>🌟 Hiring a dedicated Magento developer from Ixly Technologies can be a strategic move to elevate your e-commerce busi.... </span>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="blog">
-                    <img src="/assets/img/nasscom-event-blog.png" alt="blog" loading="lazy" />
-                    <span>🌟 Reflecting on an Inspiring Event! 🌟 <br />Two weeks before, we had the privilege of attending the NASSCOM Global Inclu.... </span>
-                  </div>
-                  <hr />
-                  <div className="blog">
-                    <img src="/assets/img/nasscom-event-blog.png" alt="blog" loading="lazy" />
-                    <span>🌟 Reflecting on an Inspiring Event! 🌟 <br /> Two weeks before, we had the privilege of attending the NASSCOM Global Inclu.... </span>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="col-md-3 contactus">
+            <div className="col-md-5 contactus">
               <h6>Contact Us</h6>
               <div>
                 <h5>Address</h5>
