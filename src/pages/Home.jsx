@@ -3,6 +3,7 @@ import Swiper from 'swiper'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import Layout from '../components/Layout'
+import ClientReview from '../components/ClientReview'
 import { clientLogos } from '../data/clients'
 import { homeServiceBoxes } from '../data/homeServiceBoxes'
 
@@ -162,6 +163,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Client Review */}
+        <ClientReview />
 
         {/* Clients Logos */}
         <section className="container clients text-center zin">
