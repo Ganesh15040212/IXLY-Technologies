@@ -12,7 +12,7 @@ export const clientReviews = [
   {
     id: 'client-1',
     video: videoUrl('client1', '/videos/client1.mp4'),
-    quote: 'Hi, I’m Raja Sambath, Co-Founder of Synamen Thinklabs. We’ve been working with IXLY Technologies for the past two years, and our experience has been excellent. Their technical expertise and customer-centric approach help deliver reliable and scalable solutions. I highly recommend IXLY Technologies as a trusted technology partner for e-commerce, Magento, and digital solutions.',
+    quote: 'Hi, I’m Raja Sambath, Co-Founder of Synamen Thinklabs Private Limited. We’ve been working with IXLY Technologies for the past two years, and our experience has been excellent. Their technical expertise and customer-centric approach help deliver reliable and scalable solutions. I highly recommend IXLY Technologies as a trusted technology partner for e-commerce, Magento, and digital solutions.',
     name: 'Raja Sambath',
     role: 'CEO, Synamen Thinklabs Pvt. Ltd',
   },
