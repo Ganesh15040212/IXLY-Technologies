@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Swiper from 'swiper'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -7,6 +7,9 @@ import 'swiper/css/pagination'
 import { clientReviews } from '../data/clientReviews'
 
 export default function ClientReview() {
+  const swiperRef = useRef(null)
+  const isHoveringRef = useRef(false)
+
   useEffect(() => {
     const swiper = new Swiper('.client-review-swiper', {
       modules: [Autoplay, Navigation, Pagination],
@@ -26,12 +29,38 @@ export default function ClientReview() {
         clickable: true,
       },
     })
+    swiperRef.current = swiper
+    // Looping only runs while the user is hovering the section; a playing video always takes priority and stops it.
+    swiper.autoplay?.stop()
 
-    return () => swiper?.destroy(true, true)
+    return () => {
+      swiperRef.current = null
+      swiper?.destroy(true, true)
+    }
   }, [])
 
+  const handleMouseEnter = () => {
+    isHoveringRef.current = true
+    swiperRef.current?.autoplay?.start()
+  }
+
+  const handleMouseLeave = () => {
+    isHoveringRef.current = false
+    swiperRef.current?.autoplay?.stop()
+  }
+
+  const handleVideoPlay = () => {
+    swiperRef.current?.autoplay?.stop()
+  }
+
+  const handleVideoPause = () => {
+    if (isHoveringRef.current) {
+      swiperRef.current?.autoplay?.start()
+    }
+  }
+
   return (
-    <section>
+    <section onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className="client_review container">
         <div className="row col-md-12">
           <div className="col-md-12 zin text-center client_review_heading">
@@ -46,7 +75,15 @@ export default function ClientReview() {
                 <div className="row col-md-12 align-items-center">
                   <div className="col-md-6 zin">
                     <div className="client_review_video">
-                      <video src={review.video} controls playsInline preload="metadata" />
+                      <video
+                        src={review.video}
+                        controls
+                        playsInline
+                        preload="metadata"
+                        onPlay={handleVideoPlay}
+                        onPause={handleVideoPause}
+                        onEnded={handleVideoPause}
+                      />
                     </div>
                   </div>
                   <div className="col-md-6 zin">
@@ -61,18 +98,18 @@ export default function ClientReview() {
               </div>
             ))}
           </div>
-          {clientReviews.length > 1 && (
-            <div className="client_review_controls">
-              <button type="button" className="client-review-prev" aria-label="Previous testimonial">
-                <i className="fa-solid fa-arrow-left"></i>
-              </button>
-              <div className="client-review-pagination"></div>
-              <button type="button" className="client-review-next" aria-label="Next testimonial">
-                <i className="fa-solid fa-arrow-right"></i>
-              </button>
-            </div>
-          )}
         </div>
+        {clientReviews.length > 1 && (
+          <div className="client_review_controls">
+            <button type="button" className="client-review-prev" aria-label="Previous testimonial">
+              <i className="fa-solid fa-arrow-left"></i>
+            </button>
+            <div className="client-review-pagination"></div>
+            <button type="button" className="client-review-next" aria-label="Next testimonial">
+              <i className="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )
