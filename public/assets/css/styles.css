@@ -307,7 +307,7 @@ header {
 
 /*Services Boxes */
 section.services.container {
-    height: 550px;
+    min-height: 550px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     /*background: linear-gradient(179deg, rgb(10 10 10 / 27%) 23%, rgb(163 161 161 / 52%) 100%);*/
@@ -396,7 +396,7 @@ section.prepare_bg {
     justify-content: space-between;
     align-items: center;
     background-position: center center;
-    margin-top: 600px;
+    margin-top: 100px;
 }
 
 .prepare_bg h3 {
@@ -797,9 +797,26 @@ section.container.clients.text-center.zin {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: contain;
-    background: #000;
     border-radius: 22px;
+}
+
+/* Portrait-recorded testimonial clips don't fill this 16:9 box; instead of plain
+   black bars, a blurred/scaled copy of the same video fills the space behind it. */
+.client_review_video_bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    object-fit: cover;
+    filter: blur(60px);
+    transform: scale(1.3);
+    pointer-events: none;
+}
+
+.client_review_video_fg {
+    position: relative;
+    z-index: 1;
+    object-fit: contain;
+    background: transparent;
 }
 
 .client_review .col-md-6 h3.highlighttext {
@@ -1187,6 +1204,13 @@ section.container.text-center.banner_head h2 span {
     border-bottom: 1px solid transparent;
     background: linear-gradient(#fff, #fff) padding-box, radial-gradient(at 100% 100%, #84C64C 0%, #2d6fb5 95%) border-box;
     padding-bottom: 8px;
+}
+
+.single_service h3 a,
+.single_service h3 a:hover,
+.single_service h3 a:visited {
+    color: inherit;
+    text-decoration: none;
 }
 
 ul.list-inline.lists {
@@ -1941,14 +1965,37 @@ section.container.contact_details {
 
 @media only screen and (max-width: 991px) {
 
+    section.container.text-center.banner_head {
+        padding-top: 130px;
+        padding-bottom: 60px;
+    }
+
+    section.container.projects_lists {
+        margin-top: 120px;
+    }
+
     section.container.text-center.banner_head h2 {
         font-size: 36px;
         line-height: 46px;
     }
 
+    section.services.container {
+        padding-top: 100px;
+    }
+
     .portfolio,
     .our_clients.container {
         max-width: 930px;
+    }
+
+    .portfolio {
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+
+    .our_clients.container {
+        padding: 60px 30px;
+        margin-top: 60px;
     }
 
     .client_review {
@@ -1960,8 +2007,10 @@ section.container.contact_details {
         line-height: 40px;
     }
 
-    section.prepare_bg {
+    section.prepare_bg,
+    .innerpages section.prepare_bg {
         padding: 90px 30px;
+        margin-top: 60px;
     }
 
     .prepare_bg a {
@@ -1984,6 +2033,11 @@ section.container.contact_details {
 
     footer ul.list-inline {
         padding-left: 25px;
+    }
+
+    footer,
+    .innerpages footer {
+        margin-top: 80px;
     }
 
     .carousel-item-next img,
@@ -2061,6 +2115,19 @@ section.container.contact_details {
 
     .innerpages section.prepare_bg {
         padding: 70px 50px;
+        margin-top: 60px;
+    }
+
+    section.container.domainlists {
+        margin-top: 90px;
+    }
+
+    section.container.clients.text-center.zin {
+        padding-top: 60px;
+    }
+
+    .col-md-5.text-start.det_head {
+        padding-top: 60px;
     }
 
     .row.col-md-12.dlists {
@@ -2077,7 +2144,7 @@ section.container.contact_details {
         clear: both;
         display: inline-block;
         width: 100%;
-        margin-bottom: 300px;
+        margin-bottom: 60px;
     }
 
     .prodet,
@@ -2085,36 +2152,63 @@ section.container.contact_details {
         padding: 0;
         text-align: center;
         float: unset;
+        margin-top: 20px;
     }
 
     .proli1 {
-        margin: 400px 0px;
+        margin: 60px 0px;
     }
 
+    /* .images/.images1 hold two absolutely-positioned mockup images with no
+       flow content, so they need an explicit height (previously a flat
+       500px regardless of how tall the images actually are, leaving a big
+       empty gap before the heading/text that follows). Heights below are
+       sized to each tier's actual image bottom edge. Positioning switches
+       from container-width-relative left/right percentages (which drifted
+       off-center at narrow widths, and did nothing for .images1 since it
+       has no explicit width) to left:50% + margin-left, which centers the
+       front image and offsets the back image by a fixed peek amount
+       regardless of viewport width. */
     .images {
         float: unset;
+        width: 100%;
+        min-height: 490px;
+    }
+
+    .images1 {
+        float: unset;
+        width: 100%;
+        min-height: 440px;
     }
 
     img.img7 {
-        left: 0;
+        left: 50%;
         top: 165px;
+        margin-left: -240px;
     }
 
     img.img8 {
         width: 420.034px;
         height: 349px;
-        left: 28%;
+        left: 50%;
         top: 130px;
+        margin-left: -210px;
     }
 
     img.img9 {
-        right: 100px;
+        left: 50%;
         top: 121px;
+        margin-left: -35px;
+        right: auto;
     }
 
     img.img10 {
-        right: 192px;
+        width: 420px;
+        height: 349px;
+        left: 50%;
         top: 80px;
+        margin-left: -210px;
+        right: auto;
     }
 
     img.img11 {
@@ -2141,6 +2235,56 @@ section.container.contact_details {
 }
 
 @media only screen and (max-width:764px) {
+    section.services.container {
+        padding-top: 70px;
+    }
+
+    section.container.text-center.banner_head {
+        padding-top: 90px;
+        padding-bottom: 40px;
+    }
+
+    section.container.projects_lists {
+        margin-top: 60px;
+    }
+
+    .portfolio {
+        padding-top: 60px;
+        padding-bottom: 40px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .our_clients.container {
+        padding: 40px 20px;
+        margin-top: 40px;
+    }
+
+    section.container.clients.text-center.zin {
+        padding-top: 40px;
+    }
+
+    section.container.domainlists {
+        margin-top: 60px;
+    }
+
+    .col-md-5.text-start.det_head {
+        padding-top: 40px;
+    }
+
+    .proli {
+        margin-bottom: 40px;
+    }
+
+    .proli1 {
+        margin: 40px 0px;
+    }
+
+    footer,
+    .innerpages footer {
+        margin-top: 80px;
+    }
+
     .services h4 {
         font-size: 30px;
     }
@@ -2151,10 +2295,6 @@ section.container.contact_details {
 
     .service_boxes p {
         min-height: unset;
-    }
-
-    section.prepare_bg {
-        margin-top: 1800px;
     }
 
     .prepare_bg h3 {
@@ -2194,8 +2334,9 @@ section.container.contact_details {
     .about_company:hover li {
         color: rgba(124, 184, 71, 1);
     }
-    .about_company p{
-        text-align: justify;
+    .about_company p,
+    .design_col p {
+        text-align: left;
     }
     .about_company ul li {
         font-size: 14px;
@@ -2268,6 +2409,30 @@ section.container.contact_details {
         line-height: 36px;
     }
 
+    .carousel.slide {
+        padding: 25px;
+    }
+
+    .carousel-caption.d-md-block h3 {
+        font-size: 30px;
+        line-height: 1.15;
+    }
+
+    .carousel-caption.d-md-block h5 {
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+
+    .carousel-caption.d-md-block p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .carousel-caption.d-md-block a {
+        padding: 10px 30px;
+        font-size: 15px;
+    }
+
     .img1 {
         width: 183.63px;
         height: 139.719px;
@@ -2297,18 +2462,30 @@ section.container.contact_details {
         margin-bottom: 20px;
     }
 
+    .images {
+        min-height: 440px;
+    }
+
+    .images1 {
+        min-height: 380px;
+    }
+
     img.img9 {
-        right: 75px;
+        left: 50%;
         top: 121px;
         width: 217px;
         height: 160px;
+        margin-left: -59px;
+        right: auto;
     }
 
     img.img10 {
         width: 256px;
         height: 288px;
-        right: 200px;
+        left: 50%;
         top: 80px;
+        margin-left: -128px;
+        right: auto;
     }
 
     img.img11 {
@@ -2323,17 +2500,19 @@ section.container.contact_details {
     }
 
     img.img7 {
-        left: 62px;
+        left: 50%;
         top: 165px;
         width: 200px;
         height: 137px;
+        margin-left: -188px;
     }
 
     img.img8 {
         width: 315.034px;
         height: 297px;
-        left: 35%;
+        left: 50%;
         top: 130px;
+        margin-left: -158px;
     }
 
     .contact_form .col {
@@ -2376,10 +2555,6 @@ section.container.contact_details {
         width: 34%;
     }
 
-    section.prepare_bg {
-        margin-top: 2000px;
-    }
-
     footer {
         padding-left: 20px;
         padding-right: 20px;
@@ -2412,37 +2587,44 @@ section.container.contact_details {
         width: 250px;
         height: 250px;
     }
-
-    img.img9 {
-        right: 64px;
-        top: 121px;
-        width: 217px;
-        height: 160px;
-    }
-
-    img.img10 {
-        width: 256px;
-        height: 288px;
-        right: 96px;
-        top: 80px;
-    }
 }
 
 /* Narrow phones (e.g. 360px-class Android devices) - the tiles above still
    overflow the viewport at this width, so shrink and reposition them further. */
 @media only screen and (max-width: 400px) {
+    .images {
+        min-height: 320px;
+    }
+
+    .images1 {
+        min-height: 310px;
+    }
+
+    /* img7/img9 keep their 600px-tier size here - only the peek offset
+       (which depends on the front image's width) needs updating. */
+    img.img7 {
+        margin-left: -125px;
+    }
+
     img.img8 {
         width: 190px;
         height: 158px;
-        left: 30%;
+        left: 50%;
         top: 120px;
+        margin-left: -95px;
+    }
+
+    img.img9 {
+        margin-left: -92px;
     }
 
     img.img10 {
         width: 190px;
         height: 214px;
-        right: 94px;
+        left: 50%;
         top: 80px;
+        margin-left: -95px;
+        right: auto;
     }
 
     .carousel.slide {

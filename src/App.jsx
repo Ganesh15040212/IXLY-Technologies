@@ -10,6 +10,7 @@ const Awnopy = lazy(() => import('./pages/Awnopy'))
 const IshaWoocommerce = lazy(() => import('./pages/IshaWoocommerce'))
 const ContactUs = lazy(() => import('./pages/ContactUs'))
 const ItStaffAugmentation = lazy(() => import('./pages/ItStaffAugmentation'))
+const Marketing = lazy(() => import('./pages/Marketing'))
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="/isha-woocommerce" element={<IshaWoocommerce />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/it-staff-augmentation-services" element={<ItStaffAugmentation />} />
+          <Route path="/marketing" element={<Marketing />} />
         </Routes>
       </Suspense>
     </>

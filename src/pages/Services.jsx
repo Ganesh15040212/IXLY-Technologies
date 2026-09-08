@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Layout from '../components/Layout'
 import { homeServiceBoxes } from '../data/homeServiceBoxes'
 
@@ -141,6 +142,30 @@ export default function Services() {
                   <li><img src="/assets/img/tech-team-devops.png" alt="" loading="lazy" /></li>
                   <li><img src="/assets/img/tech-team-devops.png" alt="" loading="lazy" /></li>
                   <li><img src="/assets/img/tech-team-cloud.png" alt="" loading="lazy" /></li>
+                </ul>
+              </div>
+            </div>
+            <div className="single_service" id="it-staff-augmentation">
+              <img src="/images/DedicatedDevelopers.png" alt="IT Staff Augmentation" loading="lazy" />
+              <div className="content">
+                <h3><Link to="/it-staff-augmentation-services">IT Staff Augmentation</Link></h3>
+                <ul className="list-inline lists">
+                  <li>Pre-Vetted Developers – Scale your engineering team with experienced talent across .NET, Java, Python, React, Angular, Magento, Salesforce, SAP, AI, Data Engineering, QA, Cloud, and DevOps.</li>
+                  <li>Fast Onboarding – Bring experienced professionals onto your team within 48–72 hours.</li>
+                  <li>Flexible Engagement Models – Dedicated developers, team extension, offshore development centers, and contract staffing.</li>
+                  <li>Full Control – Maintain complete control over your project while we handle sourcing and staffing.</li>
+                </ul>
+              </div>
+            </div>
+            <div className="single_service" id="marketing">
+              <img src="/assets/img/Managementconsulting1.gif" alt="Marketing" loading="lazy" />
+              <div className="content">
+                <h3><Link to="/marketing">Marketing</Link></h3>
+                <ul className="list-inline lists">
+                  <li>Powered by Expertise, Inspired by Ideas – Full technology and marketing capabilities under one roof.</li>
+                  <li>Team Augmentation – Skilled developers, designers, and project managers working as your offshore team.</li>
+                  <li>Design &amp; Innovation – UI/UX ideation, mobile-first UX, and end-to-end creative strategy.</li>
+                  <li>Global Delivery – 50+ employees, 3 development centers, and 100% global delivery standards.</li>
                 </ul>
               </div>
             </div>

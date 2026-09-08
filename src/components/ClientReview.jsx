@@ -33,7 +33,23 @@ export default function ClientReview() {
     // Looping only runs while the user is hovering the section; a playing video always takes priority and stops it.
     swiper.autoplay?.stop()
 
+    // Only the active slide's blurred background video should actually be decoding/playing —
+    // otherwise all slides (including offscreen loop clones) would autoplay muted video at once.
+    const syncBackgroundVideos = () => {
+      const activeSlide = swiper.slides[swiper.activeIndex]
+      swiper.el.querySelectorAll('.client_review_video_bg').forEach((video) => {
+        if (activeSlide && activeSlide.contains(video)) {
+          video.play?.().catch(() => {})
+        } else {
+          video.pause?.()
+        }
+      })
+    }
+    swiper.on('slideChange', syncBackgroundVideos)
+    syncBackgroundVideos()
+
     return () => {
+      swiper.off('slideChange', syncBackgroundVideos)
       swiperRef.current = null
       swiper?.destroy(true, true)
     }
@@ -76,6 +92,18 @@ export default function ClientReview() {
                   <div className="col-md-6 zin">
                     <div className="client_review_video">
                       <video
+                        className="client_review_video_bg"
+                        src={review.video}
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
+                        preload="metadata"
+                        aria-hidden="true"
+                        tabIndex={-1}
+                      />
+                      <video
+                        className="client_review_video_fg"
                         src={review.video}
                         controls
                         playsInline

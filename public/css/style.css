@@ -164,14 +164,14 @@ h4  {
 }
 
 /************* header css starts here *****************/
-.header{
+.itstaff-hero{
     position: relative;
     height: auto;
     padding-bottom: 50px;
     overflow: hidden;
 }
 
-.header::before{
+.itstaff-hero::before{
     content: "";
     position: absolute;
     inset: 0;
@@ -182,7 +182,7 @@ h4  {
     z-index: 0;
 }
 
-.header::after{
+.itstaff-hero::after{
     content: "";
     position: absolute;
     inset: 0;
@@ -1577,6 +1577,42 @@ figure {
     outline: none;
 }
 
+
+/* Slick's dots/arrows are normally styled by slick-theme.css, which this project
+   doesn't load - only the structural slick.css. Without it, .slick-dots is a
+   plain unstyled <ul>, so each dot's number label shows as a stacked, unstyled
+   button instead of a small circle. */
+.my-slider .slick-dots {
+    position: static;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+}
+.my-slider .slick-dots li {
+    width: auto;
+    height: auto;
+    margin: 0;
+}
+.my-slider .slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+}
+.my-slider .slick-dots li.slick-active button {
+    background: #7CB847;
+}
 
 /******* hiring slider css starts *************/
 /* for slick slider */

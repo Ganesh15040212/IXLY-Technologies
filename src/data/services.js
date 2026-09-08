@@ -5,4 +5,6 @@ export const services = [
   { slug: 'iot', label: 'IOT', title: 'IOT', description: 'IoT Consulting & Strategy – Expert guidance on IoT architecture.' },
   { slug: 'microservices', label: 'Microservices', title: 'Microservices', description: 'Microservices Consulting & Strategy – Transitioning to a microservices architecture.' },
   { slug: 'teams', label: 'Development Teams', title: 'Dedicated Teams', description: 'Custom Dedicated Team Setup – Skilled developers, designers, and project managers.' },
+  { slug: 'it-staff-augmentation', label: 'IT Staff Augmentation', title: 'IT Staff Augmentation', description: 'Scale your development team faster with pre-vetted developers onboarded in 48–72 hours.', path: '/it-staff-augmentation-services' },
+  { slug: 'marketing', label: 'Marketing', title: 'Marketing', description: 'Powered by expertise, inspired by ideas - our full technology and marketing capabilities.', path: '/marketing' },
 ]

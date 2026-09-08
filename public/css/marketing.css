@@ -1,0 +1,541 @@
+		.page-content .section-title{
+		    display: block;
+			font-family: 'Poppins Regular';
+			font-size:58px;
+			font-weight: 600;
+			text-align: center;	
+			background: linear-gradient(to right, #006175 0%, #47A7C7 40%, #6ce704 70%, #00a950 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text !important;
+			text-fill-color: transparent !important;
+			text-transform: uppercase;
+			z-index: 1;
+		}
+		.page-content .section-subtitle {
+			font-family: 'Poppins Light';
+			font-size: 24px;
+			text-align: center;
+			color: #ffffff;
+		}
+		.banner-item {
+			position: relative;
+			background: url(/assets/img/ixly-marketing-banner.jpg) no-repeat;
+			background-size: cover;
+			background-position: center center;
+			min-height: 700px;
+			height: 100vh;
+		}
+		.banner-item:after {
+			content: '';
+			background: radial-gradient(59.03% 69.79% at 78.06% 30.21%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+			display: block;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+		}
+		.banner-item .banner-caption {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			max-width: 520px;
+			z-index: 1;
+		}
+		.banner-item h1 {
+			font-size: 50px;
+			font-family: Poppins Medium;
+			line-height: 1;
+			color: #ffffff;
+			text-transform: uppercase;
+			margin-bottom:20px;
+		}
+		.banner-item p {
+			font-weight: 600;
+			font-style: SemiBold;
+			font-size: 20px;
+			leading-trim: NONE;
+			line-height: 100%;
+			letter-spacing: 0%;
+			text-transform: uppercase;
+			color: #ffffff;
+			margin-bottom:20px;
+		}
+		.banner-item .banner-caption a{
+			display: inline-block;
+			border: 2px solid transparent;
+			background: linear-gradient(#0a0a0a, #0A0A0A) padding-box, radial-gradient(at 100% 100%, #6ce704 0%, #49bf49 60%, #47A7C7 80%, #2d6fb5 100%) border-box;
+			background: linear-gradient(#0a0a0a, #0A0A0A) padding-box, linear-gradient(to right, #006175 0%, #47A7C7 40%, #6ce704 70%, #00a950 100%) border-box;
+			text-decoration: none;
+			text-transform: capitalize;
+			color: #fff;
+			font-family: 'Poppins Regular';
+			padding: 12px 40px;
+			border-radius: 35px;
+		}
+		.banner-item .banner-caption a:hover {
+			background: linear-gradient(#0a0a0a00, #0a0a0a69) padding-box, linear-gradient(to right, #006175 0%, #47A7C7 40%, #6ce704 70%, #00a950 100%) border-box;
+			color: #000;
+			font-weight: 600;
+		}
+		.banner-item a.site-link {
+			position: absolute;
+			z-index: 1;
+			bottom: 4rem;
+			color: #ffffff;
+			text-transform: uppercase;
+			text-decoration: none;
+			font-family: 'Poppins SemiBold';
+		}
+		.page-content .promo-content {
+			position:relative;
+			background: linear-gradient(102.37deg, rgba(255, 255, 255, 0) 29.35%, rgba(0, 0, 0, 0.48) 95.86%);
+			padding: 80px 0;
+		}
+		.page-content .promo-content:before, .page-content .brands-content:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url(/assets/img/bg-line.png);
+			background-repeat: repeat;
+			background-size: 600px 600px;
+			opacity: 0.2;
+			z-index: 0;
+		}
+		.promo-box-wrap h3 {
+			background: linear-gradient(to right, #006175 0%, #47A7C7 40%, #6ce704 70%, #00a950 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text !important;
+			text-fill-color: transparent !important;
+			text-transform: uppercase;
+			font-size: 24px;
+			font-family: 'Poppins Regular';
+			z-index: 1;
+			font-weight: 600;
+			text-align: center;
+		}
+		.promo-box-wrap hr {
+			opacity: 1;
+			background: linear-gradient(90deg, #2762AE 1%, #51C3E4 33%, #94C94C 66%, #20B24B 100%);
+			height: 1.5px;
+			border: 0;
+			margin: 25px 0;
+		}
+		.promo-box-wrap .promo-box {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background: #FFFFFF26;
+			padding: 24px 40px;
+			border-radius: 4px;
+			margin-bottom: 25px;
+		}
+		.promo-box-wrap .promo-box h4{
+			font-weight: 400;
+			font-size: 40px;
+			line-height: 25px;
+			text-align: left;
+			color: #7CB847;
+		}
+		.promo-box-wrap .promo-box p {
+			margin: 0;
+			color: #D9D9D9;
+			font-size: 15px;
+			text-align: left;
+		}
+		.page-content .brands-content{
+			background: linear-gradient(102.37deg, rgba(255, 255, 255, 0) 29.35%, rgba(0, 0, 0, 0.48) 95.86%);
+			padding: 80px 0;
+			position: relative;
+			z-index: 1;
+		}
+		.page-content ul.brand-list {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			padding: 0;
+			margin: 0;
+		}
+		.page-content .brand-list li {
+			display: inline-block;
+			position: relative;
+			margin: 1rem 0;
+		}
+		.page-content .brand-list li a {
+			display: flex;
+			text-align: center;
+			padding: 40px 24px;
+			min-height: 200px;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid rgba(255, 255, 255, 0.25);
+			border-width: 1px;
+			border-radius: 8px;
+		}
+		.page-content .brand-list li img {
+			max-width:100%;
+			height: auto;
+			vertical-align: middle;
+			max-height: 100px;
+			filter: grayscale(100%);
+			transition: all 1s;
+		}
+		.page-content .brand-list li:hover img {
+			filter: grayscale(0%);
+		}
+		.page-content .team-member {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+		}
+		.page-content .team-image img {
+			position:relative;
+			max-width: 100%;
+			width: 160px;
+			max-height: 160px;
+			border-radius: 50%;
+			object-fit: cover;
+			object-position: center;
+		}
+		.page-content .team-member h4 {
+			font-size: 18px;
+			color: #ffffff;
+		}
+		.page-content .team-member p {
+			font-size:14px;
+			color: #FFFFFF99;
+		}
+		.brands-content hr {
+			opacity: 1;
+			background: linear-gradient(90deg, #2762AE 1%, #51C3E4 33%, #94C94C 66%, #20B24B 100%);
+			height: 1.5px;
+			border: 0;
+			margin: 40px 0;
+		}
+		.brands-content .leader-title {
+			font-size:36px;
+		}
+		.page-content .what-we-do-content {
+			position:relative;
+			background: url(/assets/img/black-bg.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			padding: 80px 0;
+			color: #ffffff;
+			z-index: 1;
+		}
+		.page-content .what-we-do-content:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, #2762AE 1%, #51C3E4 33%, #94C94C 66%, #20B24B 100%);
+			opacity: 0.8;
+			z-index: -1;
+		}
+		.page-content .what-we-do-content .section-title {
+			background: #ffffff;
+		}
+		.page-content .what-we-do-content h4 {
+			font-family: 'Poppins SemiBold';
+			font-size: 24px;
+			text-transform: uppercase;
+		}
+		.page-content .what-we-do-content p {
+			font-size:14px;
+		}
+		.page-content .what-we-do-content hr {
+			opacity: 1;
+			background: linear-gradient(90deg, #2762AE 1%, #51C3E4 33%, #94C94C 66%, #20B24B 100%);
+			height: 1.5px;
+			border: 0;
+			margin: 25px 0;
+		}
+		.page-content .services-content {
+			position:relative;
+			background: url(/assets/img/black-bg.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			padding: 80px 0;
+			color: #ffffff;
+			z-index: 1;
+		}
+		.page-content .services-content:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000000;
+			opacity: 0.8;
+			z-index: -1;
+		}
+		.page-content .services-content:after, .page-content .expertise-content:after, .page-content .trusted-content:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url(/assets/img/bg-line.png);
+			background-repeat: repeat;
+			background-size: 600px 600px;
+			opacity: 0.2;
+			z-index: 0;
+		}
+		 .page-content .expertise-content:after, .page-content .trusted-content:after {
+			opacity: 0.15;
+		 }
+		.page-content .services-content h4 {
+			font-family: 'Poppins SemiBold';
+			font-size: 24px;
+			text-transform: uppercase;
+		}
+		.page-content .services-content ul{
+			margin: 0;
+		}
+		.page-content .services-content li {
+			font-size:14px;
+		}
+		.page-content .services-content hr {
+			opacity: 1;
+			background: linear-gradient(90deg, #2762AE 1%, #51C3E4 33%, #94C94C 66%, #20B24B 100%);
+			height: 1.5px;
+			border: 0;
+			margin: 20px 0;
+		}
+		.page-content .services-content .service-box-wrap {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 24px;
+			margin-left: 0;
+			margin-right: 0;
+		}
+		.page-content .services-content .service-box {
+			background: #FFFFFF33;
+			padding: 30px;
+			border-radius: 24px;
+			min-height: 260px;
+			margin: 0;
+		}
+		@media only screen and (max-width: 767px) {
+			.page-content .services-content .service-box-wrap {
+				grid-template-columns: 1fr;
+			}
+		}
+		.page-content .expertise-content {
+			position:relative;
+			background: url(/assets/img/black-bg.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			padding: 80px 0;
+			color: #ffffff;
+			z-index: 1;
+		}
+		.page-content .expertise-content:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000000;
+			opacity: 0.4;
+			z-index: -1;
+		}
+		.page-content .expertise-box-wrap {
+			display: flex;
+			gap: 10px;
+		}
+		.page-content .expertise-title {
+		    display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 25%;
+			background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), linear-gradient(90deg, #2762AE 1%, #51C3E4 33%, #94C94C 66%, #20B24B 100%);
+			text-align: center;
+			color: #ffffff;
+			padding: 16px 5px;
+			border-radius: 8px;
+		}
+		.page-content .expertise-logos {
+			width: 80%;
+			overflow-x: hidden;
+		}
+		.page-content .expertise-title h4 {
+			font-family: 'Poppins SemiBold';
+			font-size: 14px;
+			margin: 0;
+			line-height: 14px;
+			text-transform: uppercase;
+		}
+		.page-content .expertise-img {
+			background: #ffffff;
+			border-radius: 8px;
+			overflow: hidden;
+			text-align: center;
+		}
+		.page-content .expertise-img img{
+			max-width:100px;
+			height: auto;
+			border-radius: 8px;
+		}
+		.page-content .expertise-box {
+			margin-bottom: 20px;
+		}
+		
+		.page-content .trusted-content {
+			position:relative;
+			background: url(/assets/img/black-bg.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position:center center;
+			padding: 80px 0;
+			color: #ffffff;
+			z-index: 1;
+		}
+		.page-content .trusted-content:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000000;
+			opacity: 0.4;
+			z-index: -1;
+		}
+		.page-content .trusted-box-wrap {
+			display: flex;
+			gap: 10px;
+		}
+		.page-content .trusted-title {
+		    display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 10%;
+			min-width: 230px;
+			background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), linear-gradient(90deg, #2762AE 1%, #51C3E4 33%, #94C94C 66%, #20B24B 100%);
+			text-align: center;
+			color: #ffffff;
+			padding: 16px 0;
+			border-radius: 8px;
+		}
+		.page-content .trusted-logos {
+			width: 80%;
+			overflow: hidden;
+		}
+		.page-content .trusted-title h4 {
+			font-family: 'Poppins SemiBold';
+			font-size: 14px;
+			margin: 0;
+			line-height: 14px;
+			text-transform: uppercase;
+		}
+		.page-content .trusted-img {
+			background: #ffffff;
+			border-radius: 8px;
+			overflow: hidden;
+			text-align: center;
+			display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
+		}
+		.page-content .trusted-img img{
+			max-width:100px;
+			height: auto;
+			border-radius: 8px;
+		}
+		.page-content .trusted-box {
+			margin-bottom: 20px;
+		}
+	
+		.page-content .contact-content {
+			position:relative;
+			background: url(/assets/img/world-map.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center center;
+			padding: 180px 0;
+			padding: 80px 0;
+			color: #ffffff;
+			z-index: 1;
+		}
+		.page-content .contact-content:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000000;
+			opacity: 0.4;
+			z-index: -1;
+		}
+		.page-content .contact-content h4 {
+			font-family: 'Poppins SemiBold';
+			font-size: 24px;
+			text-transform: uppercase;
+		}
+		.page-content .contact-content ul{
+			margin: 0;
+			list-style:none;
+		}
+		.page-content .contact-content li {
+			font-size:14px;
+		}
+		.page-content .contact-content a{
+			color: #ffffff;
+			text-decoration: none;
+		}
+		.page-content .contact-content .brand-logo{
+			display: block;
+			color: #ffffff;
+			text-align: center;
+			max-width: 200px;
+			margin: 50px auto;
+		}
+		.page-content .contact-content img {
+			max-width: 200px;
+			height: auto;
+		}
+		.page-content .contact-content hr {
+			opacity: 1;
+			background: linear-gradient(90deg, #2762AE 1%, #51C3E4 33%, #94C94C 66%, #20B24B 100%);
+			height: 1.5px;
+			border: 0;
+			margin: 20px 0;
+		}
+		.page-content .contact-content .contact-box {
+			background: #FFFFFF33;
+			padding: 30px;
+			border-radius: 24px;
+			min-height: 220px;
+			margin: 0 0 1.5rem;
+		}
+		@media only screen and (max-width: 767px) {
+			.page-content .expertise-logos, .page-content .expertise-title ,.page-content .trusted-title, .page-content .trusted-logos{
+				width: 50%;
+				min-width: inherit;
+			}
+		}
+		@media only screen and (min-width: 768px) {
+			.brand-list .swiper-wrapper {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+			.page-content .brand-list li {
+				max-width: 25%;
+			}
+		}

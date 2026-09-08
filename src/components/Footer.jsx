@@ -15,7 +15,7 @@ export default function Footer() {
               <h6>Services</h6>
               <ul className="list-inline">
                 {services.map((service) => (
-                  <li key={service.slug}><Link to={`/services#${service.slug}`}>{service.label}</Link></li>
+                  <li key={service.slug}><Link to={service.path || `/services#${service.slug}`}>{service.label}</Link></li>
                 ))}
               </ul>
             </div>

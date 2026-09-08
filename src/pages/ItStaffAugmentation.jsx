@@ -1,5 +1,8 @@
 import { useEffect, Fragment } from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import BottomTabBar from '../components/BottomTabBar'
 
 export default function ItStaffAugmentation() {
   useEffect(() => {
@@ -28,7 +31,23 @@ export default function ItStaffAugmentation() {
       document.head.appendChild(fontStylesheet)
     }
 
-    // Load the landing page specific CSS
+    document.title = 'IT Staff Augmentation Services - Ixly Technologies'
+
+    // This page renders the shared site Header/Footer, which need main-styles.css -
+    // load it if some other page hasn't already (same pattern Layout uses).
+    if (!document.getElementById('main-styles')) {
+      const mainStylesLink = document.createElement('link')
+      mainStylesLink.id = 'main-styles'
+      mainStylesLink.rel = 'stylesheet'
+      mainStylesLink.href = '/assets/css/styles.css'
+      document.head.appendChild(mainStylesLink)
+    }
+    document.body.classList.add('innerpages')
+
+    // Load the landing page specific CSS (this page's own content styling, on
+    // top of main-styles - the one class name the two files both used, .header,
+    // was renamed to .itstaff-hero here to avoid fighting the shared nav's own
+    // .header wrapper)
     const existing = document.getElementById('landing-styles')
     if (!existing) {
       const link = document.createElement('link')
@@ -37,9 +56,6 @@ export default function ItStaffAugmentation() {
       link.href = '/css/style.css'
       document.head.appendChild(link)
     }
-    // Remove main site styles temporarily to avoid conflicts
-    const mainStyles = document.getElementById('main-styles')
-    if (mainStyles) mainStyles.disabled = true
 
     let mm
     let lenis
@@ -170,9 +186,6 @@ export default function ItStaffAugmentation() {
       clearTimeout(timer)
       clearTimeout(slickTimer)
       clearTimeout(cursorTimer)
-      // Re-enable main styles when leaving
-      const mainSt = document.getElementById('main-styles')
-      if (mainSt) mainSt.disabled = false
       const landingSt = document.getElementById('landing-styles')
       if (landingSt) landingSt.remove()
       document.getElementById('landing-fonts')?.remove()
@@ -200,9 +213,9 @@ export default function ItStaffAugmentation() {
 
   return (
     <div style={{ margin: 0 }}>
+      <Header />
       <div className="container-fluid mx-auto m-0 p-0">
-        {/* Header */}
-        <section className="container-fluid header">
+        <section className="container-fluid itstaff-hero">
           <div className="container">
             <div className="mt-5">
               <img width="150" src="/assets/img/logo-dark1.png" alt="Ixly Logo" />
@@ -668,12 +681,8 @@ export default function ItStaffAugmentation() {
         </div>
       </div>
 
-      {/* Footer */}
-      <section className="bottom_footer">
-        <div className="container">
-          <p>© 2013 – 2026 Ixly Technologies. All Rights Reserved.</p>
-        </div>
-      </section>
+      <Footer />
+      <BottomTabBar />
     </div>
   )
 }

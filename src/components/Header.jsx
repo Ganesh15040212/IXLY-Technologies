@@ -25,7 +25,7 @@ export default function Header() {
         <nav className="navbar navbar-expand-lg">
           <div className="container">
             <Link className="navbar-brand" to="/">
-              <img src="/assets/img/logo-dark1.png" alt="Ixly Technologies Logo" />
+              <img src="/assets/img/logo-dark1.png" alt="Ixly Technologies Logo" width="110" height="48" />
             </Link>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -49,19 +49,9 @@ export default function Header() {
                       <div className="mega-menu-left">Services</div>
                       <div className="mega-menu-right">
                         <div className="row">
-                          {services.slice(0, 3).map((service) => (
-                            <div className="col-md-4" key={service.slug}>
-                              <Link to={`/services#${service.slug}`}>
-                                <div className="mega-menu-title">{service.title}</div>
-                                <p className="dropdown-item">{service.description}</p>
-                              </Link>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="row mt-3">
-                          {services.slice(3, 6).map((service) => (
-                            <div className="col-md-4" key={service.slug}>
-                              <Link to={`/services#${service.slug}`}>
+                          {services.map((service, index) => (
+                            <div className={`col-md-4${index >= 3 ? ' mt-3' : ''}`} key={service.slug}>
+                              <Link to={service.path || `/services#${service.slug}`}>
                                 <div className="mega-menu-title">{service.title}</div>
                                 <p className="dropdown-item">{service.description}</p>
                               </Link>

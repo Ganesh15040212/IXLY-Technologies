@@ -65,7 +65,7 @@ export default function CaseStudy() {
             <div className="row col-md-12">
               <div className="col-md-3 zin">
                 <h3 className="highlighttext">Clients</h3>
-                <h2>Our <br /> Clients</h2>
+                <h2>Our Clients</h2>
               </div>
               <div className="col-md-9 zin">
                 <div className="swiper">
