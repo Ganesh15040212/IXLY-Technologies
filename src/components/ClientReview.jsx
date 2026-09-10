@@ -6,9 +6,12 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { clientReviews } from '../data/clientReviews'
 
+const MOBILE_QUERY = '(max-width: 764px)'
+
 export default function ClientReview() {
   const swiperRef = useRef(null)
   const isHoveringRef = useRef(false)
+  const isMobileRef = useRef(false)
 
   useEffect(() => {
     const swiper = new Swiper('.client-review-swiper', {
@@ -30,8 +33,22 @@ export default function ClientReview() {
       },
     })
     swiperRef.current = swiper
-    // Looping only runs while the user is hovering the section; a playing video always takes priority and stops it.
-    swiper.autoplay?.stop()
+
+    // On mobile there's no hover, so the carousel auto-scrolls continuously.
+    // On desktop, looping only runs while the user is hovering the section.
+    // Either way, a playing video always takes priority and stops it.
+    const mobileMql = window.matchMedia(MOBILE_QUERY)
+    const applyAutoplayForViewport = (isMobile) => {
+      isMobileRef.current = isMobile
+      if (isMobile || isHoveringRef.current) {
+        swiper.autoplay?.start()
+      } else {
+        swiper.autoplay?.stop()
+      }
+    }
+    applyAutoplayForViewport(mobileMql.matches)
+    const handleViewportChange = (event) => applyAutoplayForViewport(event.matches)
+    mobileMql.addEventListener('change', handleViewportChange)
 
     // Only the active slide's blurred background video should actually be decoding/playing —
     // otherwise all slides (including offscreen loop clones) would autoplay muted video at once.
@@ -49,6 +66,7 @@ export default function ClientReview() {
     syncBackgroundVideos()
 
     return () => {
+      mobileMql.removeEventListener('change', handleViewportChange)
       swiper.off('slideChange', syncBackgroundVideos)
       swiperRef.current = null
       swiper?.destroy(true, true)
@@ -62,7 +80,9 @@ export default function ClientReview() {
 
   const handleMouseLeave = () => {
     isHoveringRef.current = false
-    swiperRef.current?.autoplay?.stop()
+    if (!isMobileRef.current) {
+      swiperRef.current?.autoplay?.stop()
+    }
   }
 
   const handleVideoPlay = () => {
@@ -70,7 +90,7 @@ export default function ClientReview() {
   }
 
   const handleVideoPause = () => {
-    if (isHoveringRef.current) {
+    if (isHoveringRef.current || isMobileRef.current) {
       swiperRef.current?.autoplay?.start()
     }
   }
