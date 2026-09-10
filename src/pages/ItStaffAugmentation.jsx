@@ -1,10 +1,68 @@
-import { useEffect, Fragment } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import BottomTabBar from '../components/BottomTabBar'
 
 export default function ItStaffAugmentation() {
+  const [hireFormData, setHireFormData] = useState({ name: '', email: '', phone: '', requirement: '' })
+  const [hireErrors, setHireErrors] = useState([])
+  const [hireStatus, setHireStatus] = useState(null) // 'success' | 'error' | null
+  const [hireLoading, setHireLoading] = useState(false)
+
+  const handleHireChange = (e) => {
+    setHireFormData({ ...hireFormData, [e.target.name]: e.target.value })
+  }
+
+  const validateHireForm = () => {
+    const errs = []
+    if (!hireFormData.name.trim()) errs.push('Full name is required.')
+    if (!hireFormData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(hireFormData.email)) errs.push('Valid email is required.')
+    if (!hireFormData.phone.trim() || !/^[0-9]{10,15}$/.test(hireFormData.phone)) errs.push('Valid phone number is required.')
+    if (!hireFormData.requirement.trim()) errs.push('Requirement is required.')
+    return errs
+  }
+
+  const handleHireSubmit = async (e) => {
+    e.preventDefault()
+    const errs = validateHireForm()
+    if (errs.length > 0) {
+      setHireErrors(errs)
+      setHireStatus(null)
+      return
+    }
+    setHireErrors([])
+    setHireLoading(true)
+
+    const apiBase = import.meta.env.VITE_API_BASE_URL || ''
+
+    try {
+      const response = await fetch(`${apiBase}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: hireFormData.name,
+          email: hireFormData.email,
+          phone: hireFormData.phone,
+          company: '',
+          message: hireFormData.requirement,
+        }),
+      })
+      const data = await response.json()
+      if (response.ok) {
+        setHireStatus('success')
+        setHireFormData({ name: '', email: '', phone: '', requirement: '' })
+      } else {
+        setHireErrors(data.errors || ['Failed to send your request. Please try again.'])
+        setHireStatus('error')
+      }
+    } catch {
+      setHireErrors(['Failed to send your request. Please check your network and try again.'])
+      setHireStatus('error')
+    }
+    setHireLoading(false)
+  }
+
   useEffect(() => {
     // Load the Google Fonts (Inter + Poppins) this page's stylesheet expects —
     // the original page loaded these in its own <head>; this SPA shares one
@@ -62,6 +120,8 @@ export default function ItStaffAugmentation() {
     let lenisRafId
     let cursorRafId
     let cancelled = false
+    let handleHireModalShow
+    let handleHireModalHidden
 
     // Run GSAP + Slick after libraries loaded
     const initAnimations = () => {
@@ -139,6 +199,16 @@ export default function ItStaffAugmentation() {
         lenis.on('scroll', ScrollTrigger.update)
         const raf = (time) => { lenis.raf(time); lenisRafId = requestAnimationFrame(raf) }
         lenisRafId = requestAnimationFrame(raf)
+
+        // Lenis hijacks scroll input independently of the DOM, so Bootstrap's
+        // body-overflow-hidden modal lock doesn't stop it - the page keeps
+        // scrolling behind the "Hire Developers" modal unless we pause it
+        // for as long as the modal is open.
+        const hireModalEl = document.getElementById('hire')
+        handleHireModalShow = () => lenis?.stop()
+        handleHireModalHidden = () => lenis?.start()
+        hireModalEl?.addEventListener('show.bs.modal', handleHireModalShow)
+        hireModalEl?.addEventListener('hidden.bs.modal', handleHireModalHidden)
       }
 
       ScrollTrigger.refresh()
@@ -197,6 +267,9 @@ export default function ItStaffAugmentation() {
       // Tear down Lenis
       if (lenisRafId) cancelAnimationFrame(lenisRafId)
       lenis?.destroy()
+      const hireModalEl = document.getElementById('hire')
+      if (handleHireModalShow) hireModalEl?.removeEventListener('show.bs.modal', handleHireModalShow)
+      if (handleHireModalHidden) hireModalEl?.removeEventListener('hidden.bs.modal', handleHireModalHidden)
       // Tear down cursor rAF loop and jQuery handlers
       if (cursorRafId) cancelAnimationFrame(cursorRafId)
       if (window.$) {
@@ -227,7 +300,7 @@ export default function ItStaffAugmentation() {
                 <img width="278" height="406" id="resume3" className="resume resume3" src="/images/resume3.png" alt="" style={{ opacity: 0 }} />
               </div>
               <div>
-                <h1 className="section-title text-center mt-n5" style={{ marginTop: '-100px', position: 'relative', zIndex: 9 }}>
+                <h1 className="section-title text-center itstaff-hero-title" style={{ position: 'relative', zIndex: 9 }}>
                   IT Staff Augmentation Services to Scale Your Development Team Faster
                 </h1>
               </div>
@@ -653,29 +726,43 @@ export default function ItStaffAugmentation() {
                   <img width="30" data-bs-dismiss="modal" src="/images/Cancel.png" alt="" />
                 </button>
               </div>
-              <div className="modal-body pt-0 mt-0">
-                <div className="mb-4">
-                  <label htmlFor="hire-name" className="form-label">Full Name</label>
-                  <input type="text" className="form-control" id="hire-name" placeholder="Enter Full Name" name="Fullname" />
+              <form onSubmit={handleHireSubmit} style={{ display: 'contents' }}>
+                <div className="modal-body pt-0 mt-0">
+                  {hireErrors.length > 0 && (
+                    <div style={{ color: 'red', marginBottom: '15px' }}>
+                      <ul style={{ margin: 0, paddingLeft: '18px' }}>
+                        {hireErrors.map((err, i) => <li key={i}>{err}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                  {hireStatus === 'success' && (
+                    <div style={{ color: 'green', marginBottom: '15px' }}>Your request has been sent successfully!</div>
+                  )}
+                  <div className="mb-4">
+                    <label htmlFor="hire-name" className="form-label">Full Name</label>
+                    <input type="text" className="form-control" id="hire-name" placeholder="Enter Full Name" name="name" value={hireFormData.name} onChange={handleHireChange} />
+                  </div>
+                  <div className="mb-4 mt-3">
+                    <label htmlFor="hire-email" className="form-label">Email ID</label>
+                    <input type="email" className="form-control" id="hire-email" placeholder="Enter Email ID" name="email" value={hireFormData.email} onChange={handleHireChange} />
+                  </div>
+                  <div className="mb-4 mt-3">
+                    <label htmlFor="hire-phone" className="form-label">Phone Number</label>
+                    <input type="text" className="form-control" id="hire-phone" placeholder="Enter Phone Number" name="phone" value={hireFormData.phone} onChange={handleHireChange} />
+                  </div>
+                  <div className="mb-4 mt-3">
+                    <label htmlFor="hire-requirement">Requirement</label>
+                    <textarea className="form-control" rows="5" id="hire-requirement" name="requirement" placeholder="Enter Requirement" value={hireFormData.requirement} onChange={handleHireChange}></textarea>
+                  </div>
                 </div>
-                <div className="mb-4 mt-3">
-                  <label htmlFor="hire-email" className="form-label">Email ID</label>
-                  <input type="email" className="form-control" id="hire-email" placeholder="Enter Email ID" name="Email" />
+                <div className="modal-footer">
+                  <div className="d-grid">
+                    <button type="submit" className="btn btn-primary w-100" disabled={hireLoading}>
+                      {hireLoading ? 'Sending...' : 'Submit'}
+                    </button>
+                  </div>
                 </div>
-                <div className="mb-4 mt-3">
-                  <label htmlFor="hire-phone" className="form-label">Phone Number</label>
-                  <input type="text" className="form-control" id="hire-phone" placeholder="Enter Phone Number" name="Phonenumber" />
-                </div>
-                <div className="mb-4 mt-3">
-                  <label htmlFor="hire-requirement">Requirement</label>
-                  <textarea className="form-control" rows="5" id="hire-requirement" name="text" placeholder="Enter Requirement"></textarea>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <div className="d-grid">
-                  <button type="button" className="btn gradient-btn w-100" data-bs-dismiss="modal">submit</button>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

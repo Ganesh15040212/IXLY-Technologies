@@ -104,7 +104,12 @@ section.top_header {
 
 .header {
     position: fixed;
-    z-index: 10;
+    /* Above page content that sets its own stacking context (e.g. the IT
+       Staff Augmentation page's scroll-animated "Are you facing?" tags use
+       z-index 9/10 and can tie/outrank this on z-index, letting them paint
+       over the fixed nav) - stay below the cursor/modal layers (999/99999
+       in public/css/style.css) which must still cover the header. */
+    z-index: 100;
     width: 100%;
 }
 

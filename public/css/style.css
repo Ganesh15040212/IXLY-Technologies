@@ -89,6 +89,18 @@ h1.section-title  {
     z-index: 999;
 }
 
+/* Hero title sits pulled up under the shuffling resume cards; on desktop
+   pull it up a little less so there's some breathing room above it. */
+.itstaff-hero-title {
+    margin-top: -100px;
+}
+
+@media (min-width: 992px) {
+    .itstaff-hero-title {
+        margin-top: -70px;
+    }
+}
+
 h2  {
     display: block;
   font-family: "Poppins", sans-serif;
