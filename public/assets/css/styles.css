@@ -2719,3 +2719,93 @@ section.container.contact_details {
         font-size: 19px;
     }
 }
+
+/* Page headings that previously kept their full desktop size (32-48px) on
+   tablets and phones: Home "Participation & Certification", Services cards,
+   Domain Expertise, Contact Us, case-study detail pages and the shared
+   "Preparing For Your Business" CTA band. */
+@media only screen and (max-width: 991px) {
+    .clients h4,
+    .headertext h3.highlighttext,
+    .details_page .highlighttext {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    .contact_form h3.highlighttext {
+        font-size: 36px;
+        line-height: 1.3;
+    }
+
+    .single_service h3 {
+        font-size: 26px;
+        line-height: 1.4;
+    }
+
+    .details_page p {
+        font-size: 20px;
+        line-height: 1.6;
+    }
+
+    .contact_details i {
+        font-size: 36px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .clients h4,
+    .headertext h3.highlighttext,
+    .details_page .highlighttext,
+    .contact_form h3.highlighttext {
+        font-size: 28px;
+        line-height: 1.25;
+    }
+
+    .prepare_bg h3 {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+
+    .single_service h3 {
+        font-size: 22px;
+    }
+
+    .details_page p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .dlists h3,
+    .prodet h5,
+    .techdetails h3 {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .row.col-md-12.dlists ul li,
+    .address {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .contact_details i {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .clients h4,
+    .headertext h3.highlighttext,
+    .details_page .highlighttext,
+    .contact_form h3.highlighttext {
+        font-size: 24px;
+    }
+
+    .prepare_bg h3 {
+        font-size: 20px;
+    }
+
+    .single_service h3 {
+        font-size: 20px;
+    }
+}
