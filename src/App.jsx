@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect, lazy, Suspense } from 'react'
+import { useEffect, useLayoutEffect, lazy, Suspense } from 'react'
 import Home from './pages/Home'
 
 const AboutUs = lazy(() => import('./pages/AboutUs'))
@@ -15,10 +15,20 @@ const Marketing = lazy(() => import('./pages/Marketing'))
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
 
+  // Stop the browser restoring the previous page's scroll offset on navigation
   useEffect(() => {
-    if (!hash) {
-      window.scrollTo(0, 0)
-    } else {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual'
+  }, [])
+
+  // Jump to the top before paint. 'instant' overrides the global
+  // `scroll-behavior: smooth`, which otherwise animates the scroll and leaves
+  // lazy-loaded pages (IT Staff Augmentation, Marketing) opening mid-page.
+  useLayoutEffect(() => {
+    if (!hash) window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [pathname, hash])
+
+  useEffect(() => {
+    if (hash) {
       setTimeout(() => {
         const el = document.querySelector(hash)
         if (el) {
