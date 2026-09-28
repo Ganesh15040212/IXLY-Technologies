@@ -6,6 +6,7 @@ import Layout from '../components/Layout'
 import ClientReview from '../components/ClientReview'
 import { clientLogos } from '../data/clients'
 import { homeServiceBoxes } from '../data/homeServiceBoxes'
+import { whyChooseIxly } from '../data/whyChooseIxly'
 
 export default function Home() {
   useEffect(() => {
@@ -94,27 +95,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Portfolio */}
-        <section>
-          <div className="portfolio container">
-            <div className="row col-md-12">
-              <div className="col-md-5 zin">
-                <h3 className="highlighttext">Portfolio</h3>
-                <h2>OUR WORK</h2>
-                <p>Health Care Application</p>
-                <ul className="list-inline">
-                  <li>Mobile App</li>
-                  <li></li>
-                  <li>Mobile App</li>
-                </ul>
-                <a href="#">Learn More</a>
+        {/* Why Choose Ixly */}
+        <section className="why_choose container zin">
+          <div className="why_choose_heading text-center">
+            <h3 className="highlighttext">Why Choose Us</h3>
+            <h2>Why Choose Ixly?</h2>
+            <p>Ixly Technologies leads with cutting-edge, budget-friendly digital offerings designed to drive profitable results and enhance your business.</p>
+          </div>
+          <div className="why_choose_grid">
+            {whyChooseIxly.map((item) => (
+              <div className="why_choose_card" key={item.key}>
+                <h4>{item.title}</h4>
+                <p>{item.description}</p>
               </div>
-              <div className="col-md-7 zin posrel">
-                <img className="img1" src="/assets/img/sample.png" alt="" loading="lazy" />
-                <img className="img2" src="/assets/img/b.png" alt="" loading="lazy" />
-                <img className="img3" src="/assets/img/mob.png" alt="" loading="lazy" />
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 

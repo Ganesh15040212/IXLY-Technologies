@@ -20,7 +20,7 @@ export default function ClientReview() {
       loop: clientReviews.length > 1,
       grabCursor: true,
       autoplay: {
-        delay: 6000,
+        delay: 3000,
         disableOnInteraction: false,
       },
       navigation: {
