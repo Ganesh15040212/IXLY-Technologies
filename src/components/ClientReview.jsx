@@ -12,6 +12,7 @@ export default function ClientReview() {
   const swiperRef = useRef(null)
   const isHoveringRef = useRef(false)
   const isMobileRef = useRef(false)
+  const isVideoPlayingRef = useRef(false)
 
   useEffect(() => {
     const swiper = new Swiper('.client-review-swiper', {
@@ -40,6 +41,7 @@ export default function ClientReview() {
     const mobileMql = window.matchMedia(MOBILE_QUERY)
     const applyAutoplayForViewport = (isMobile) => {
       isMobileRef.current = isMobile
+      if (isVideoPlayingRef.current) return
       if (isMobile || isHoveringRef.current) {
         swiper.autoplay?.start()
       } else {
@@ -61,6 +63,13 @@ export default function ClientReview() {
           video.pause?.()
         }
       })
+      // If the user navigates away (arrows/dots) while a testimonial is playing,
+      // stop it so it doesn't keep playing on an offscreen slide.
+      swiper.el.querySelectorAll('.client_review_video_fg').forEach((video) => {
+        if (!(activeSlide && activeSlide.contains(video)) && !video.paused) {
+          video.pause()
+        }
+      })
     }
     swiper.on('slideChange', syncBackgroundVideos)
     syncBackgroundVideos()
@@ -75,7 +84,9 @@ export default function ClientReview() {
 
   const handleMouseEnter = () => {
     isHoveringRef.current = true
-    swiperRef.current?.autoplay?.start()
+    if (!isVideoPlayingRef.current) {
+      swiperRef.current?.autoplay?.start()
+    }
   }
 
   const handleMouseLeave = () => {
@@ -86,10 +97,12 @@ export default function ClientReview() {
   }
 
   const handleVideoPlay = () => {
+    isVideoPlayingRef.current = true
     swiperRef.current?.autoplay?.stop()
   }
 
   const handleVideoPause = () => {
+    isVideoPlayingRef.current = false
     if (isHoveringRef.current || isMobileRef.current) {
       swiperRef.current?.autoplay?.start()
     }
@@ -110,7 +123,9 @@ export default function ClientReview() {
               <div className="swiper-slide" key={review.id}>
                 <div className="row col-md-12 align-items-center">
                   <div className="col-md-6 zin">
-                    <div className="client_review_video">
+                    {/* swiper-no-swiping: clicks/drags on the video controls (play, seek bar)
+                        must not be treated as a swipe that moves the slide. */}
+                    <div className="client_review_video swiper-no-swiping">
                       <video
                         className="client_review_video_bg"
                         src={review.video}
